@@ -1,9 +1,9 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import MapScreen from './src/screens/MapScreen.tsx';
-import PostScreen from './src/screens/PostScreen.tsx';
-import UserScreen from './src/screens/UserScreen.tsx';
+import MapScreen from './src/screens/MapScreen';
+import PostScreen from './src/screens/PostScreen';
+import UserScreen from './src/screens/UserScreen';
 
 const Tab = createBottomTabNavigator();
 
