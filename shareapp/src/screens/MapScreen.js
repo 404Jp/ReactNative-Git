@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, Text } from 'react-native';
+import { SafeAreaView, Text, View } from 'react-native';
+import MapView, { Marker } from 'react-native-maps';
 import { ref, onValue } from 'firebase/database';
 import { database } from '../services/firebase/firebaseConfig';
+const markerImage = require('../img/icon.png');
 
 export default function MapScreen() {
-  const [location, setLocation] = useState({ lat: '', log: '' });
+  const [location, setLocation] = useState({ latitude: '', longitude: '' });
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
@@ -20,12 +22,41 @@ export default function MapScreen() {
     });
   }, []);
 
+
+  
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 1 }}>
       <Text>MapScreen</Text>
-      <Text>Location </Text>
-      <Text>latitude: {location.latitude}</Text>
-      <Text>longitude: {location.longitude}</Text>
+      <View style={{ flex: 1 }}>
+        {location.latitude && location.longitude ? (
+          <MapView
+            style={{ flex: 1 }}
+            initialRegion={{
+              latitude: parseFloat(location.latitude),
+              longitude: parseFloat(location.longitude),
+              latitudeDelta: parseFloat(location.latitudeDelta),
+              longitudeDelta:  parseFloat(location.longitudeDelta),
+            }}
+          >
+            <Marker
+              coordinate={{
+                latitude: parseFloat(location.latitude),
+                longitude: parseFloat(location.longitude),
+              }}
+              title={title}
+              description={description}
+              image={markerImage}
+              imageStyle={{ width: 5, height: 5 }} 
+              
+            />
+          </MapView>
+        ) : (
+          <Text>Cargando Mapa...</Text>
+        )}
+      </View>
+      <Text>Location:</Text>
+      <Text>Latitude: {location.latitude}</Text>
+      <Text>Longitude: {location.longitude}</Text>
       <Text>Title: {title}</Text>
       <Text>Description: {description}</Text>
     </SafeAreaView>
