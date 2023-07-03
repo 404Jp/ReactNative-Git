@@ -4,7 +4,7 @@ import { ref, onValue } from 'firebase/database';
 let userData = {};
 
 const readUserData = () => {
-  const userRef = ref(database, 'Users/User1');
+  const userRef = ref(database, 'Users');
   onValue(userRef, (snapshot) => {
     const data = snapshot.val();
     userData = {
@@ -15,7 +15,7 @@ const readUserData = () => {
 };
 
 const mapPostData = () => {
-  const postRef = ref(database, 'Users/User1/post');
+  const postRef = ref(database, 'Users/post');
   onValue(postRef, (snapshot) => {
     const data = snapshot.val();
     console.log('Location:', data.location);
