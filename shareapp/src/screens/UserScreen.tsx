@@ -12,15 +12,15 @@ const UserInformation: React.FC<UserInformationProps> = ({ fullName, email, pass
   return (
     <View style={styles.container}>
       <Text style={styles.title}>FoodShare</Text>
-      <Text style={styles.text}>{Titulo}</Text>
+      <Text style={styles.title2}>Mi Cuenta</Text>
 
-      <Text style={styles.nombre}>Nombre completo:</Text>
+      <Text style={styles.subtitulo}>Nombre completo:</Text>
       <Text style={styles.text}>{fullName}</Text>
 
-      <Text style={styles.correo}>Correo electrónico:</Text>
+      <Text style={styles.subtitulo}>Correo electrónico:</Text>
       <Text style={styles.text}>{email}</Text>
 
-      <Text style={styles.contraseña}>Contraseña:</Text>
+      <Text style={styles.subtitulo}>Contraseña:</Text>
       <Text style={styles.text}>{password}</Text>
     </View>
   );
@@ -31,13 +31,27 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 20,
   },
-  nombre: {
-
+  subtitulo: {
+    marginBottom: 5,
+    marginLeft:7,
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  title2: {
+    textAlign: 'center',
+    fontSize: 25,
+    fontWeight:'bold',
+    color: 'gray',
+    marginBottom: 40,
   },
   correo: {
+    fontSize: 16,
+    fontWeight: 'bold',
 
   },
   contraseña: {
+    fontSize: 16,
+    fontWeight: 'bold',
 
   },
 
@@ -49,13 +63,17 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 16,
     marginBottom: 20,
+    padding: 10,
+    backgroundColor: 'white',
+    borderWidth: 1,
+    borderRadius: 30,
   },
   title: {
     textAlign: 'center',
     fontSize: 40,
     fontWeight:'bold',
     color: '#39558C',
-    marginVertical:10,
+    marginTop:10,
   }
 });
 
