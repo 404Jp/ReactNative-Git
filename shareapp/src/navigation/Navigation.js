@@ -3,6 +3,7 @@ import {createBottomTabNavigator} from "@react-navigation/bottom-tabs"
 import MapScreen from '../screens/MapScreen';
 import PostScreen from '../screens/PostScreen';
 import UserScreen from '../screens/UserScreen';
+import LoginScreen from '../screens/LoginScreen';
 import Icon from "react-native-vector-icons/FontAwesome5";
 
 const Tab = createBottomTabNavigator();
