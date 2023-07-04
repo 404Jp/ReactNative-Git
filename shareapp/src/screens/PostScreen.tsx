@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { SafeAreaView, Text } from 'react-native';
 
 export default function PostScreen() {
   return (
-    <View>
+    <SafeAreaView>
       <Text>Publicación</Text>
-    </View>
+    </SafeAreaView>
   );
 }
