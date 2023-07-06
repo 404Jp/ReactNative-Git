@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TextInput, TouchableOpacity, View, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { auth } from '../services/firebase/firebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
@@ -10,23 +10,20 @@ export default function LoginScreen() {
   const navigation = useNavigation();
 
   const handleLogin = async() => {
-    const user = await signInWithEmailAndPassword(auth,email,password)
-    console.log('Iniciar sesión con email:', email, 'y contraseña:', password);
-    if(user.user)
+    try
     {
+      const user = await signInWithEmailAndPassword(auth,email,password)
       navigation.navigate(("navegacion"))
+    } catch(error){
+      Alert.alert('Cuenta Erronea', 'Correo o contraseña incorrectos.', [
+        {text: 'OK', onPress: () => console.log('OK Pressed')},
+      ]);
     }
-  };
-
-  const handleForgotPassword = () => {
-    // Lógica para recuperar contraseña
-    console.log('Recuperar contraseña');
   };
 
   const handleCreateAccount = () => {
     // Lógica para crear una cuenta
     navigation.navigate(("cuenta"))
-    console.log('Crear cuenta');
   };
 
   return (
@@ -48,9 +45,6 @@ export default function LoginScreen() {
         onChangeText={text => setPassword(text)}
         secureTextEntry
       />
-      <TouchableOpacity onPress={handleForgotPassword}>
-        <Text style={styles.forgotPassword}>¿Olvidaste tu contraseña?</Text>
-      </TouchableOpacity>
       <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
         <Text style={styles.buttonText}>Iniciar Sesión</Text>
       </TouchableOpacity>
@@ -89,7 +83,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   loginButton: {
-    backgroundColor: '#000',
+    marginTop:20,
+    backgroundColor: '#39558C',
     width: '100%',
     height: 40,
     justifyContent: 'center',
@@ -98,7 +93,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   createAccountButton: {
-    backgroundColor: '#39558C',
+    backgroundColor: '#000',
     width: '100%',
     height: 40,
     justifyContent: 'center',

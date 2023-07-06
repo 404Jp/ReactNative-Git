@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { auth } from '../services/firebase/firebaseConfig';
+import { } from 'firebase/auth';
+
 
 interface UserInformationProps {
   fullName: string;
@@ -21,7 +24,6 @@ const UserInformation: React.FC<UserInformationProps> = ({
   };
 
   const cerrarsesion = () =>{
-  
   }
   
 
@@ -35,14 +37,6 @@ const UserInformation: React.FC<UserInformationProps> = ({
 
       <Text style={styles.subtitulo}>Correo electrónico:</Text>
       <Text style={styles.text}>{email}</Text>
-
-      <Text style={styles.subtitulo}>Contraseña:</Text>
-      <View style={styles.passwordContainer}>
-        <Text style={styles.passwordText}>{showPassword ? password : '******'}</Text>
-        <TouchableOpacity onPress={toggleShowPassword}>
-          <Text style={styles.mostrarButton}>{showPassword ? 'Ocultar' : 'Mostrar'}</Text>
-        </TouchableOpacity>
-      </View>
 
       <TouchableOpacity onPress={cerrarsesion}>
         <Text style={styles.cerrarsesion}>Cerrar Sesion</Text>

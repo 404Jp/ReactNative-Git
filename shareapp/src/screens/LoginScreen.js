@@ -12,7 +12,7 @@ export default function LoginScreen() {
   const navigation = useNavigation();
 
   const handleCreateAccount = async() => {
-    const credentialuser = await createUserWithEmailAndPassword(auth,email,password)
+      const credentialuser = await createUserWithEmailAndPassword(auth,email,password)
     navigation.navigate(("Login"))
   };
 
@@ -50,7 +50,7 @@ export default function LoginScreen() {
       <TouchableOpacity style={styles.createAccountButton} onPress={handleCreateAccount}>
         <Text style={styles.buttonText}>Crear Cuenta</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.createAccountButton} onPress={volver}>
+      <TouchableOpacity style={styles.volverbutton} onPress={volver}>
         <Text style={styles.buttonText}>Volver</Text>
       </TouchableOpacity>
     </View>
@@ -63,6 +63,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
+  },
+  volverbutton: {
+    marginTop: 10,
+    backgroundColor: 'black',
+    width: '100%',
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 40,
   },
   heading: {
     fontSize: 40,
@@ -77,12 +86,6 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     marginTop: 10,
     paddingStart: 30,
-  },
-  forgotPassword: {
-    marginTop: 10,
-    fontSize: 16,
-    textDecorationLine: 'underline',
-    marginBottom: 20,
   },
   loginButton: {
     backgroundColor: '#000',
