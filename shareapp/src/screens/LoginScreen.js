@@ -1,38 +1,42 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { auth } from '../services/firebase/firebaseConfig';
+import { createUserWithEmailAndPassword} from 'firebase/auth';
 
 
 export default function LoginScreen() {
   const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const navigation = useNavigation();
 
-  const handleLogin = () => {
-    // Lógica para iniciar sesión
-    console.log('Iniciar sesión con email:', email, 'y contraseña:', password);
-    
+  const handleCreateAccount = async() => {
+    const credentialuser = await createUserWithEmailAndPassword(auth,email,password)
+    navigation.navigate(("Login"))
   };
 
-  const handleForgotPassword = () => {
-    // Lógica para recuperar contraseña
-    console.log('Recuperar contraseña');
-  };
-
-  const handleCreateAccount = () => {
-    // Lógica para crear una cuenta
-    console.log('Crear cuenta');
-  };
+  const volver = () => {
+    navigation.navigate(("Login"))
+  }
 
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>FoodShare</Text>
-      <Text style={styles.subtitulo}>Inicio de Sesión</Text>
+      <Text style={styles.subtitulo}>Crear Cuenta</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Nombre"
+        value={name}
+        onChangeText={text => setName(text)}
+        keyboardType="default"
+        autoCapitalize="none"
+      />
       <TextInput
         style={styles.input}
         placeholder="Correo electrónico"
         value={email}
-        onChangeText={setEmail}
+        onChangeText={text => setEmail(text)}
         keyboardType="email-address"
         autoCapitalize="none"
       />
@@ -40,17 +44,14 @@ export default function LoginScreen() {
         style={styles.input}
         placeholder="Contraseña"
         value={password}
-        onChangeText={setPassword}
+        onChangeText={text => setPassword(text)}
         secureTextEntry
       />
-      <TouchableOpacity onPress={handleForgotPassword}>
-        <Text style={styles.forgotPassword}>¿Olvidaste tu contraseña?</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Iniciar Sesión</Text>
-      </TouchableOpacity>
       <TouchableOpacity style={styles.createAccountButton} onPress={handleCreateAccount}>
         <Text style={styles.buttonText}>Crear Cuenta</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.createAccountButton} onPress={volver}>
+        <Text style={styles.buttonText}>Volver</Text>
       </TouchableOpacity>
     </View>
   );
@@ -93,6 +94,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   createAccountButton: {
+    marginTop: 20,
     backgroundColor: '#39558C',
     width: '100%',
     height: 40,
