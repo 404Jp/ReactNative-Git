@@ -88,7 +88,7 @@ const PostScreen = ({ user }) => {
             <Text style={styles.postTitle}>{item.title}</Text>
             <Text style={styles.postDescription}>{item.description}</Text>
             <Text style={styles.postLocation}>
-              Latitud: {item.location.latitude}, Longitud: {item.location.longitude} 
+              Latitud: {item.location.latitude}, Longitud: {item.location.longitude}
             </Text>
           </View>
         )}
