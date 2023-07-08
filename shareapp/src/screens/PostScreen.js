@@ -50,7 +50,14 @@ const PostScreen = ({ user }) => {
   };
 
   const handleDeletePost = () =>{
-
+    const postRef = ref(database, `post/-NZnLafj43qh5TwBx1pw`);
+    remove(postRef)
+    .then(() => {
+      setMessage('Publicación eliminada exitosamente.');
+    })
+    .catch((error) => {
+      console.error('Error eliminando la publicación:', error);
+    });
   }
 
   return (
