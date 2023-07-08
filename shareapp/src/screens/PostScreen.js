@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, TextInput, Button, StyleSheet, Text, SafeAreaView, FlatList } from 'react-native';
 import { auth, database } from '../services/firebase/firebaseConfig';
-import { ref, push, remove, onValue } from 'firebase/database';
+import { ref, push, remove, onValue,set  } from 'firebase/database';
 
 const PostScreen = ({ user }) => {
   const [title, setTitle] = useState('');
@@ -26,7 +26,13 @@ const PostScreen = ({ user }) => {
     });
   }, []);
 
+
   const handleCreatePost = () => {
+    if (message !== '') {
+   
+      return;
+    }
+  
     const newPost = {
       title,
       description,
@@ -36,11 +42,11 @@ const PostScreen = ({ user }) => {
       },
       email: currentUser.email,
     };
-
+  
     const postRef = ref(database, 'post');
     const newPostRef = push(postRef);
     const postId = newPostRef.key;
-
+  
     set(newPostRef, newPost)
       .then(() => {
         setTitle('');
@@ -99,9 +105,9 @@ const PostScreen = ({ user }) => {
       <Text style={styles.postTitle}>Mis Publicaciones</Text>
       {message ? <Text style={styles.message}>{message}</Text> : null}
       <FlatList
-        data={posts}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
+  data={posts}
+  keyExtractor={(_, index) => index.toString()}
+  renderItem={({ item }) => (
           <View style={styles.postContainer}>
             <Text style={styles.postTitle}>{item.title}</Text>
             <Text style={styles.postDescription}>{item.description}</Text>
