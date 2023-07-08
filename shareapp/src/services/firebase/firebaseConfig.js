@@ -9,15 +9,17 @@ import { getAuth } from "firebase/auth"
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyC9lIvmbCKayd_VQL2RE2ogysmxP6odOYk",
-  authDomain: "appsharefood-c8c90.firebaseapp.com",
-  databaseURL: "https://appsharefood-c8c90-default-rtdb.firebaseio.com",
-  projectId: "appsharefood-c8c90",
-  storageBucket: "appsharefood-c8c90.appspot.com",
-  messagingSenderId: "646402935251",
-  appId: "1:646402935251:web:0406f7a120e3d1410b0726",
-  measurementId: "G-7DE05HMMKT"
+  apiKey: "AIzaSyCusNvCnz1hFv8do14TSAepE-0HJjbOMkc",
+  authDomain: "sharefood-beta-20231.firebaseapp.com",
+  databaseURL: "https://sharefood-beta-20231-default-rtdb.firebaseio.com",
+  projectId: "sharefood-beta-20231",
+  storageBucket: "sharefood-beta-20231.appspot.com",
+  messagingSenderId: "475833819231",
+  appId: "1:475833819231:web:11c2b64149eef48a19fbea",
+  measurementId: "G-ZB3QCMR5TB",
+  databaseURL: "https://sharefood-beta-20231-default-rtdb.firebaseio.com/",
 };
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
