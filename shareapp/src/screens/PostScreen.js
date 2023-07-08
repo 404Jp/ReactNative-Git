@@ -18,7 +18,9 @@ const PostScreen = ({ user }) => {
     onValue(postsRef, (snapshot) => {
       const data = snapshot.val();
       if (data) {
-        const userPosts = Object.values(data).filter((post) => post.email === currentUser.email);
+        const userPosts = Object.entries(data)
+          .filter(([_, post]) => post.email === currentUser.email)
+          .map(([key, post]) => ({ ...post, id: key }));
         setPosts(userPosts);
       }
     });
@@ -36,29 +38,34 @@ const PostScreen = ({ user }) => {
     };
 
     const postRef = ref(database, 'post');
-    push(postRef, newPost)
+    const newPostRef = push(postRef);
+    const postId = newPostRef.key;
+
+    set(newPostRef, newPost)
       .then(() => {
         setTitle('');
         setDescription('');
         setLatitude('');
         setLongitude('');
         setMessage('Publicación creada exitosamente.');
+        setPosts((prevPosts) => [...prevPosts, { ...newPost, id: postId }]);
       })
       .catch((error) => {
         console.error('Error creando post:', error);
       });
   };
 
-  const handleDeletePost = () =>{
-    const postRef = ref(database, `post/-NZnLafj43qh5TwBx1pw`);
+  const handleDeletePost = (postId) => {
+    const postRef = ref(database, `post/${postId}`);
     remove(postRef)
-    .then(() => {
-      setMessage('Publicación eliminada exitosamente.');
-    })
-    .catch((error) => {
-      console.error('Error eliminando la publicación:', error);
-    });
-  }
+      .then(() => {
+        setMessage('Publicación eliminada exitosamente.');
+        setPosts((prevPosts) => prevPosts.filter((post) => post.id !== postId));
+      })
+      .catch((error) => {
+        console.error('Error eliminando post:', error);
+      });
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -87,13 +94,13 @@ const PostScreen = ({ user }) => {
         onChangeText={setLongitude}
       />
       <View style={styles.buttonContainer}>
-        <Button title="Crear Publicación" onPress={handleCreatePost} />
+        <Button  title="Crear Publicación" onPress={handleCreatePost} />
       </View>
       <Text style={styles.postTitle}>Mis Publicaciones</Text>
       {message ? <Text style={styles.message}>{message}</Text> : null}
       <FlatList
         data={posts}
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <View style={styles.postContainer}>
             <Text style={styles.postTitle}>{item.title}</Text>
@@ -101,7 +108,7 @@ const PostScreen = ({ user }) => {
             <Text style={styles.postLocation}>
               Latitud: {item.location.latitude}, Longitud: {item.location.longitude}
             </Text>
-            <Button title='Eliminar publicación' onPress={handleDeletePost}/>
+            <Button color = 'red'title="Eliminar" onPress={() => handleDeletePost(item.id)} />
           </View>
         )}
       />
@@ -125,10 +132,10 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   buttonContainer: {
-    color: '#39558C',
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 10,
+    borderRadius: 10,
   },
   message: {
     marginTop: 10,
@@ -150,7 +157,7 @@ const styles = StyleSheet.create({
   },
   postLocation: {
     fontStyle: 'italic',
-  }
+  },
 });
 
 export default PostScreen;
