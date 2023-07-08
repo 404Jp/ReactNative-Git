@@ -24,14 +24,7 @@ export default function LoginScreen() {
     <View style={styles.container}>
       <Text style={styles.heading}>FoodShare</Text>
       <Text style={styles.subtitulo}>Crear Cuenta</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Nombre"
-        value={name}
-        onChangeText={text => setName(text)}
-        keyboardType="default"
-        autoCapitalize="none"
-      />
+     
       <TextInput
         style={styles.input}
         placeholder="Correo electrónico"

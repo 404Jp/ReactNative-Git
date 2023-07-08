@@ -6,46 +6,45 @@ import { database } from '../services/firebase/firebaseConfig';
 const markerImage = require('../img/icon.png');
 
 export default function MapScreen() {
-  const [usersData, setUsersData] = useState([]);
+  const [postsData, setPostsData] = useState([]);
 
   useEffect(() => {
-    const usersRef = ref(database, 'Users');
-    onValue(usersRef, (snapshot) => {
+    const postsRef = ref(database, 'post');
+    onValue(postsRef, (snapshot) => {
       const data = snapshot.val();
       if (data) {
-        const users = Object.values(data).map((userData) => ({
-          location: userData.post.location,
-          title: userData.post.title,
-          description: userData.post.description,
+        const posts = Object.values(data).map((postData) => ({
+          location: postData.location,
+          title: postData.title,
+          description: postData.description,
         }));
-        setUsersData(users);
+        setPostsData(posts);
       }
     });
   }, []);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-
       <View style={{ flex: 1 }}>
-        {usersData.length > 0 ? (
+        {postsData.length > 0 ? (
           <MapView
             style={{ flex: 1 }}
             initialRegion={{
-              latitude: parseFloat(usersData[0].location.latitude),
-              longitude: parseFloat(usersData[0].location.longitude),
-              latitudeDelta: parseFloat(usersData[0].location.latitudeDelta),
-              longitudeDelta: parseFloat(usersData[0].location.longitudeDelta),
+              latitude: parseFloat(postsData[0].location.latitude),
+              longitude: parseFloat(postsData[0].location.longitude),
+              latitudeDelta: 0.0922,
+              longitudeDelta: 0.0421,
             }}
           >
-            {usersData.map((userData, index) => (
+            {postsData.map((postData, index) => (
               <Marker
                 key={index}
                 coordinate={{
-                  latitude: parseFloat(userData.location.latitude),
-                  longitude: parseFloat(userData.location.longitude),
+                  latitude: parseFloat(postData.location.latitude),
+                  longitude: parseFloat(postData.location.longitude),
                 }}
-                title={userData.title}
-                description={userData.description}
+                title={postData.title}
+                description={postData.description}
                 image={markerImage}
                 imageStyle={{ width: 5, height: 5 }}
               />
@@ -58,16 +57,3 @@ export default function MapScreen() {
     </SafeAreaView>
   );
 }
-
-
-/* Para probar datos sin console log 
-  {usersData.map((userData, index) => (
-        <View key={index}>
-          <Text>Location:</Text>
-          <Text>Latitude: {userData.location.latitude}</Text>
-          <Text>Longitude: {userData.location.longitude}</Text>
-          <Text>Title: {userData.title}</Text>
-          <Text>Description: {userData.description}</Text>
-        </View>
-      ))}
-*/
