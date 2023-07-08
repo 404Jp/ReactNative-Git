@@ -16,10 +16,10 @@ const ProfileScreen = () => {
     <View style={styles.container}>
       {user ? (
         <View>
+          
+           <Text>Sesión iniciada:</Text>
           <Text>Email: {user.email}</Text>
-          <Text>UID: {user.uid}</Text>
           <Text>Tipo de autentificacion: {user.providerData[0].providerId}</Text>
-     
         </View>
       ) : (
         <Text>No hay usuario logueado.</Text>
