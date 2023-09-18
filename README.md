@@ -1,5 +1,7 @@
 # ReactNative-Git
  share food app
+
+ 
 ![image](https://github.com/p341ky/ReactNative-Git/assets/137674114/dd5251fe-58c7-4c12-9f6d-9ebbbba5f31b)
 
 Description:
@@ -15,6 +17,8 @@ Expo: We have used the Expo platform to simplify the development and deployment 
 Firebase Realtime Database: Firebase is used to store and synchronize data in real-time, ensuring that information about food locations is always up-to-date.
 Firebase Authentication: We authenticate users using Firebase Authentication, ensuring the security and privacy of the application.
 React Navigation: We use React Navigation for navigation within the application, providing an intuitive user experience.
+
+
 ![image](https://github.com/p341ky/ReactNative-Git/assets/137674114/0bd5a253-c34e-43b1-b1ba-4f808ce2bb88)
 
 ![image](https://github.com/p341ky/ReactNative-Git/assets/137674114/edbe7ac5-a2ed-4252-9dbd-ed28d3cdf264)
