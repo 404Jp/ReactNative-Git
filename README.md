@@ -1,18 +1,7 @@
-# ReactNative-Git
- share food app
-Description:
-This mobile application, developed using React Native and Expo, aims to facilitate food donation and combat hunger as its primary objective. The app allows users to share information about locations where food is given away for free. Data is stored in real-time on Firebase to ensure the accuracy of information and to facilitate real-time collaboration among users.
+Proyecto: Aplicación FoodShare
+Descripción: Esta aplicación móvil, desarrollada utilizando React Native y Expo, tiene como objetivo facilitar la donación de alimentos y combatir el hambre. Permite a los usuarios compartir información sobre ubicaciones donde se regala comida de manera gratuita. Los datos se almacenan en tiempo real en Firebase, asegurando la precisión de la información y facilitando la colaboración en tiempo real entre los usuarios.
 
-Objective:
-The core objective of this application is to contribute to achieving one of the United Nations Sustainable Development Goals: "Zero Hunger" (SDG 2). We aim to simplify the way people can help those in need of food, promoting solidarity and efficient resource distribution.
-
-Technologies Used:
-
-React Native: The application is developed using React Native, enabling a smooth and native-like experience on iOS and Android devices.
-Expo: We have used the Expo platform to simplify the development and deployment of the application.
-Firebase Realtime Database: Firebase is used to store and synchronize data in real-time, ensuring that information about food locations is always up-to-date.
-Firebase Authentication: We authenticate users using Firebase Authentication, ensuring the security and privacy of the application.
-React Navigation: We use React Navigation for navigation within the application, providing an intuitive user experience.
+Objetivo: El objetivo principal es contribuir al cumplimiento del Objetivo de Desarrollo Sostenible (ODS) número 2 de las Naciones Unidas: Hambre Cero. La aplicación busca simplificar la manera en que las personas pueden ayudar a quienes lo necesitan, promoviendo la solidaridad y una distribución eficiente de recursos alimenticios.
 
  
 
